@@ -47,6 +47,14 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        sacred: {
+          gold: "hsl(var(--sacred-gold))",
+          "gold-light": "hsl(var(--sacred-gold-light))",
+          burgundy: "hsl(var(--burgundy))",
+          "burgundy-light": "hsl(var(--burgundy-light))",
+          earth: "hsl(var(--earth))",
+          blue: "hsl(var(--sacred-blue))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
