@@ -1,51 +1,12 @@
 import PlaceCard from "./PlaceCard";
-
-const mockPlaces = [
-  {
-    id: "1",
-    name: "Debre Damo Monastery",
-    location: "Tigray Region",
-    description: "One of the most important monasteries in Ethiopia, perched atop a flat-topped mountain only accessible by rope. Founded in the 6th century by Abuna Aregawi.",
-    image: "https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800&q=80"
-  },
-  {
-    id: "2",
-    name: "Lalibela Rock Churches",
-    location: "Amhara Region",
-    description: "A UNESCO World Heritage site featuring 11 medieval monolithic cave churches carved from rock. Dating back to the 12th century under King Lalibela.",
-    image: "https://images.unsplash.com/photo-1523906630133-f6934a1ab2b9?w=800&q=80"
-  },
-  {
-    id: "3",
-    name: "Axum Church of Our Lady Mary of Zion",
-    location: "Axum, Tigray",
-    description: "The holiest church in Ethiopia, believed to house the Ark of the Covenant. A center of Ethiopian Orthodox Christianity since the 4th century.",
-    image: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=800&q=80"
-  },
-  {
-    id: "4",
-    name: "Debre Berhan Selassie",
-    location: "Gondar, Amhara",
-    description: "Famous for its beautiful ceiling decorated with angelic faces. Built in the 17th century during the reign of Emperor Iyasu I.",
-    image: "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=800&q=80"
-  },
-  {
-    id: "5",
-    name: "Gishen Mariam Monastery",
-    location: "Wollo, Amhara",
-    description: "Located on a mountain plateau, said to contain a piece of the True Cross. A major pilgrimage site established in the 13th century.",
-    image: "https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800&q=80"
-  },
-  {
-    id: "6",
-    name: "Debre Libanos Monastery",
-    location: "Oromia Region",
-    description: "Founded by Saint Tekle Haymanot in the 13th century. One of the most important religious sites with stunning views of the Blue Nile gorge.",
-    image: "https://images.unsplash.com/photo-1523906630133-f6934a1ab2b9?w=800&q=80"
-  }
-];
+import { useQuery } from "@tanstack/react-query";
+import { fetchPlaces, getImageUrl } from "@/lib/api";
 
 const FeaturedPlaces = () => {
+  const { data: places, isLoading } = useQuery({
+    queryKey: ['places'],
+    queryFn: fetchPlaces,
+  });
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -58,11 +19,24 @@ const FeaturedPlaces = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {mockPlaces.map((place) => (
-            <PlaceCard key={place.id} {...place} />
-          ))}
-        </div>
+        {isLoading ? (
+          <div className="text-center py-12">
+            <p className="text-muted-foreground">Loading featured places...</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {places?.slice(0, 6).map((place) => (
+              <PlaceCard 
+                key={place.id} 
+                id={place.id.toString()}
+                name={place.name}
+                location={place.location}
+                description={place.description}
+                image={place.images[0] ? getImageUrl(place.images[0].image) : 'https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800&q=80'}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
