@@ -19,7 +19,7 @@ export interface Place {
   description: string;
   history: string;
   latitude: number;
-  longtude: number;
+  longitude: number;
   images: PlaceImage[];
   videos: PlaceVideo[];
 }

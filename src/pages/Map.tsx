@@ -92,7 +92,7 @@ const Map = () => {
             {places.map((place) => (
               <Marker
                 key={place.id}
-                position={[place.latitude, place.longtude]}
+                position={[place.latitude, place.longitude]}
                 icon={customIcon}
               >
                 <Popup maxWidth={300}>

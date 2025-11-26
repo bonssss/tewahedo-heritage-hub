@@ -131,7 +131,7 @@ const PlaceDetail = () => {
                     <Calendar className="h-5 w-5 text-primary mt-0.5" />
                     <div>
                       <p className="font-medium text-foreground">Coordinates</p>
-                      <p className="text-muted-foreground">{place.latitude}, {place.longtude}</p>
+                      <p className="text-muted-foreground">{place.latitude}, {place.longitude}</p>
                     </div>
                   </div>
                 </div>
