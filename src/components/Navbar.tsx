@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Search, Menu } from "lucide-react";
+import { Search, Menu, Map } from "lucide-react";
 import { useState } from "react";
 
 const Navbar = () => {
@@ -23,6 +23,10 @@ const Navbar = () => {
             </Link>
             <Link to="/places" className="text-foreground hover:text-primary transition-colors">
               Holy Places
+            </Link>
+            <Link to="/map" className="flex items-center gap-1 text-foreground hover:text-primary transition-colors">
+              <Map className="h-4 w-4" />
+              Map
             </Link>
             <Link to="/about" className="text-foreground hover:text-primary transition-colors">
               About
@@ -49,6 +53,10 @@ const Navbar = () => {
             </Link>
             <Link to="/places" className="py-2 text-foreground hover:text-primary transition-colors">
               Holy Places
+            </Link>
+            <Link to="/map" className="py-2 text-foreground hover:text-primary transition-colors flex items-center gap-2">
+              <Map className="h-4 w-4" />
+              Map View
             </Link>
             <Link to="/about" className="py-2 text-foreground hover:text-primary transition-colors">
               About
