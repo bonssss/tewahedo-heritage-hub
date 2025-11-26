@@ -6,6 +6,8 @@ import Navbar from "@/components/Navbar";
 import { fetchPlaces, getImageUrl } from "@/lib/api";
 import { Link } from "react-router-dom";
 import { MapPin } from "lucide-react";
+import Footer from "@/components/Footer";
+
 
 // Fix for default marker icon
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
@@ -119,7 +121,9 @@ const Map = () => {
             ))}
           </MapContainer>
         </div>
+        
       </div>
+      <Footer />
     </div>
   );
 };
