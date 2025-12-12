@@ -4,7 +4,7 @@ import { MapPin, Calendar, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPlaceById, getImageUrl } from "@/lib/api";
-import Footer from "@/components/FooterTemp";
+import Footer from "@/components/Footer";
 
 const PlaceDetail = () => {
   const { id } = useParams();

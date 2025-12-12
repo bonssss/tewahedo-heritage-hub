@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import { Heart, Globe, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
-import Footer from "@/components/FooterTemp";
+import Footer from "@/components/Footer";
 
 
 const fadeInUp = {

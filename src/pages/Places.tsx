@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Search, Filter } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPlaces, getImageUrl } from "@/lib/api";
-import Footer from "@/components/FooterTemp";
+import Footer from "@/components/Footer";
 
 const Places = () => {
   const { data: places, isLoading, error } = useQuery({
