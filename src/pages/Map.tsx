@@ -6,7 +6,7 @@ import Navbar from "@/components/Navbar";
 import { fetchPlaces, getImageUrl } from "@/lib/api";
 import { Link } from "react-router-dom";
 import { MapPin } from "lucide-react";
-import Footer from "@/components/Footer";
+import Footer from "@/components/FooterTemp";
 
 
 // Fix for default marker icon
