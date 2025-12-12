@@ -28,7 +28,7 @@ const Footer=() => {
           </div>
 
           <p className="text-muted-foreground text-sm mt-4">
-            © 2024 Ethiopian Orthodox Church Historical Platform. Preserving sacred heritage.
+            © 2025 Ethiopian Orthodox Church Historical Platform. Preserving sacred heritage.
           </p>
         </div>
       </footer>
