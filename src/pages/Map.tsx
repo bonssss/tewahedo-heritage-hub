@@ -34,6 +34,8 @@ const Map = () => {
     queryFn: fetchPlaces,
   });
 
+  const items = places?.results ?? [];
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background">
@@ -73,7 +75,7 @@ const Map = () => {
           </p>
           <div className="flex items-center gap-2 text-muted-foreground">
             <MapPin className="h-5 w-5 text-primary" />
-            <span>{places.length} sacred sites across Ethiopia</span>
+            <span>{items.length} sacred sites across Ethiopia</span>
           </div>
         </div>
       </div>
@@ -91,7 +93,7 @@ const Map = () => {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             
-            {places.map((place) => (
+            {items.map((place) => (
               <Marker
                 key={place.id}
                 position={[place.latitude, place.longitude]}

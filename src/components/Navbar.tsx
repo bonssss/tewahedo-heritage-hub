@@ -14,7 +14,7 @@ const Navbar = () => {
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-sacred-gold to-primary flex items-center justify-center shadow-md">
               <span className="text-primary-foreground font-bold text-lg">✝</span>
             </div>
-            <span className="font-bold text-xl text-foreground">የኢትዮጵያ ኦርቶዶክስ</span>
+            <span className="font-bold text-xl text-foreground">EOTC HOLY PLACES</span>
           </Link>
 
           <div className="hidden md:flex items-center gap-6">

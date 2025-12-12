@@ -12,6 +12,7 @@ const Places = () => {
     queryKey: ['places'],
     queryFn: fetchPlaces,
   });
+  const items = places?.results ?? [];
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -56,7 +57,7 @@ const Places = () => {
         
         {places && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {places.map((place) => (
+            {items.map((place) => (
               <PlaceCard 
                 key={place.id} 
                 id={place.id.toString()}

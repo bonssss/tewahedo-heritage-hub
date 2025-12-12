@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://127.0.0.1:8000/api";
+const API_BASE_URL = "https://eotc-places.onrender.com/api";
 const CLOUDINARY_BASE_URL = "https://res.cloudinary.com/YOUR_CLOUD_NAME"; // Update with your Cloudinary cloud name
 
 export interface PlaceImage {
