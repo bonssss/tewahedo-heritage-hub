@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import FeaturedPlaces from "@/components/FeaturedPlaces";
-// import Footer from "@/components/Footer";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -9,7 +9,7 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <FeaturedPlaces />
-      {/* <Footer /> */}
+      <Footer />
 
      
     </div>
