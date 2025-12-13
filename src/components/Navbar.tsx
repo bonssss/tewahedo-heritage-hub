@@ -31,9 +31,9 @@ const Navbar = () => {
             <Link to="/about" className="text-foreground hover:text-primary transition-colors">
               About
             </Link>
-            <Button variant="ghost" size="icon">
+            {/* <Button variant="ghost" size="icon">
               <Search className="h-5 w-5" />
-            </Button>
+            </Button> */}
           </div>
 
           <Button

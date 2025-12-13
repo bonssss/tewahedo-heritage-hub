@@ -27,17 +27,17 @@ const Places = () => {
           </p>
           
           <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex-1 relative">
+            {/* <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
               <Input 
                 placeholder="Search holy places..." 
                 className="pl-10 h-12 border-border bg-background"
               />
-            </div>
-            <Button variant="outline" className="h-12 px-6 border-border">
+            </div> */}
+            {/* <Button variant="outline" className="h-12 px-6 border-border">
               <Filter className="mr-2 h-5 w-5" />
               Filter
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>
