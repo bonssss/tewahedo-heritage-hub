@@ -5,7 +5,7 @@ import { fetchPlaces, getImageUrl } from "@/lib/api";
 const FeaturedPlaces = () => {
   const { data: places, isLoading } = useQuery({
     queryKey: ['places'],
-    queryFn: fetchPlaces,
+    queryFn: ()=>fetchPlaces(),
   });
   const items = places?.results ?? [];
   return (
