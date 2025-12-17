@@ -1,18 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  LayersControl,
+} from "react-leaflet";
 import { Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import Navbar from "@/components/Navbar";
-import { fetchPlaces, getImageUrl } from "@/lib/api";
+import Footer from "@/components/Footer";
+import { fetchPlaces, getImageUrl, Place } from "@/lib/api";
 import { Link } from "react-router-dom";
 import { MapPin } from "lucide-react";
-import Footer from "@/components/Footer";
-
 
 // Fix for default marker icon
-import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
-import markerIcon from 'leaflet/dist/images/marker-icon.png';
-import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
 
 delete (Icon.Default.prototype as any)._getIconUrl;
 Icon.Default.mergeOptions({
@@ -21,6 +26,7 @@ Icon.Default.mergeOptions({
   shadowUrl: markerShadow,
 });
 
+// Custom marker icon
 const customIcon = new Icon({
   iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
   iconSize: [38, 38],
@@ -30,8 +36,8 @@ const customIcon = new Icon({
 
 const Map = () => {
   const { data: places, isLoading, error } = useQuery({
-    queryKey: ['places'],
-    queryFn: fetchPlaces,
+    queryKey: ["places"],
+    queryFn: () => fetchPlaces(),
   });
 
   const items = places?.results ?? [];
@@ -61,10 +67,12 @@ const Map = () => {
   // Center of Ethiopia
   const centerPosition: [number, number] = [9.145, 40.489];
 
+  const { BaseLayer } = LayersControl;
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      
+
       <div className="pt-24 pb-8 bg-gradient-to-b from-primary/5 to-background">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -88,12 +96,26 @@ const Map = () => {
             style={{ height: "100%", width: "100%" }}
             scrollWheelZoom={true}
           >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            
-            {items.map((place) => (
+            <LayersControl position="topright">
+              {/* Standard OpenStreetMap */}
+              <BaseLayer checked name="Standard Map">
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+              </BaseLayer>
+
+              {/* Satellite view */}
+              <BaseLayer name="Satellite">
+                <TileLayer
+                  attribution="Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye"
+                  url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                />
+              </BaseLayer>
+            </LayersControl>
+
+            {/* Markers for each place */}
+            {items.map((place: Place) => (
               <Marker
                 key={place.id}
                 position={[place.latitude, place.longitude]}
@@ -109,8 +131,12 @@ const Map = () => {
                       />
                     )}
                     <h3 className="font-bold text-lg mb-2">{place.name}</h3>
-                    <p className="text-sm text-gray-600 mb-2">{place.location}</p>
-                    <p className="text-sm mb-3 line-clamp-2">{place.description}</p>
+                    <p className="text-sm text-gray-600 mb-2">
+                      {place.location}
+                    </p>
+                    <p className="text-sm mb-3 line-clamp-2">
+                      {place.description}
+                    </p>
                     <Link
                       to={`/places/${place.id}`}
                       className="inline-block bg-primary text-primary-foreground px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition-opacity"
@@ -123,8 +149,8 @@ const Map = () => {
             ))}
           </MapContainer>
         </div>
-        
       </div>
+
       <Footer />
     </div>
   );
